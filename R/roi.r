@@ -110,13 +110,13 @@ roi_segment_ebimage <- function(img_obj, method = "otsu", keep_largest = TRUE, m
 #'
 #' @details This is the most fundamental segmentation method for thermal images.
 #'          Since animals are typically warmer than their environment, a simple low-pass filter
-#'          (e.g., keep > 22°C) is often sufficient to separate the subject from the cage.
+#'          (e.g., keep > 22 degrees Celsius) is often sufficient to separate the subject from the cage.
 #'          Open boundaries can be defined using \code{Inf} or \code{-Inf}.
 #'
 #' @param img_obj A 'BioThermR' object.
 #' @param threshold Numeric vector of length 2, e.g., \code{c(22, 38)}.
 #'                  Defines the inclusive temperature range \code{[min, max]} to keep.
-#'                  Use \code{Inf} for open upper bounds (e.g., \code{c(25, Inf)} keeps everything above 25°C).
+#'                  Use \code{Inf} for open upper bounds (e.g., \code{c(25, Inf)} keeps everything above 25 degrees Celsius).
 #' @param use_processed Logical.
 #'                  \itemize{
 #'                    \item If \code{FALSE} (default): The filter is applied to the \strong{raw} matrix, discarding any previous masks.
@@ -325,7 +325,7 @@ roi_filter_interactive <- function(img_input, start_index = 1, use_processed = T
       idx <- storage$index
       limits <- img_ranges[[idx]]
       val <- if (storage$modified_flags[idx]) storage$thresholds[[idx]] else limits
-      shiny::sliderInput("temp_range", "Range (°C):", min = limits[1], max = limits[2], value = val, step = 0.1)
+      shiny::sliderInput("temp_range", "Range (\u00B0C):", min = limits[1], max = limits[2], value = val, step = 0.1)
     })
 
     # Helper: Apply Cleaning Logic (Largest Component)

@@ -53,7 +53,7 @@ plot_thermal_heatmap <- function(img_obj, use_processed = TRUE, palette = "infer
 
   p <- ggplot(df, aes(x = col, y = row, fill = val)) +
     geom_raster() +
-    scale_fill_viridis_c(option = palette, name = "Temp (°C)", na.value = "transparent") +
+    scale_fill_viridis_c(option = palette, name = "Temp (\u00B0C)", na.value = "transparent") +
     coord_fixed() +
     theme_void()+
     labs(
@@ -129,7 +129,7 @@ plot_thermal_density <- function(img_obj, use_processed = TRUE, show_peak = TRUE
     geom_density(fill = color, alpha = 0.5) +
     labs(
       title = "Temperature Density Distribution",
-      x = "Temperature (°C)",
+      x = "Temperature (\u00B0C)",
       y = "Density"
     ) +
     theme_minimal()
@@ -223,7 +223,7 @@ plot_thermal_3d <- function(img_obj, use_processed = TRUE) {
       scene = list(
         xaxis = list(title = "Width (px)"),
         yaxis = list(title = "Height (px)"),
-        zaxis = list(title = "Temp (°C)")
+        zaxis = list(title = "Temp (\u00B0C)")
       )
     )
 
@@ -520,23 +520,16 @@ viz_thermal_montage2 <- function(img_list, ncol = NULL, padding = 10,
     offset_x <- grid_c * cell_w
     offset_y <- grid_r * cell_h
 
-    # --- 核心修改 Start ---
-    # 必须先 row 后 col，因为 as.vector(mat) 是按列优先（第一列的所有行，然后第二列...）
-    # expand.grid 第一个参数变化最快，所以必须是 row
     df <- expand.grid(
       orig_row = seq_len(nrow(mat)),
       orig_col = seq_len(ncol(mat))
     )
     df$val <- as.vector(mat)
-    # --- 核心修改 End ---
 
     # Filter out NAs
     df <- df[!is.na(df$val), ]
 
     if (nrow(df) > 0) {
-      # Apply shifts
-      # x 对应 col (宽度方向)
-      # y 对应 row (高度方向)
       df$x_shifted <- df$orig_col + offset_x
       df$y_shifted <- df$orig_row + offset_y
 
@@ -563,11 +556,11 @@ viz_thermal_montage2 <- function(img_list, ncol = NULL, padding = 10,
   # scale_y_reverse is used because matrix row 1 is usually "top", but in Cartesian plot y=1 is "bottom".
   p <- ggplot(big_df, aes(x = x_shifted, y = y_shifted, fill = val)) +
     geom_raster() +
-    scale_fill_viridis_c(option = palette, name = "Temp (°C)", na.value = "transparent") +
+    scale_fill_viridis_c(option = palette, name = "Temp (\u00B0C)", na.value = "transparent") +
     # Filename Labels
     geom_text(data = labels_df, aes(x = x, y = y, label = label),
               inherit.aes = FALSE, color = text_color, size = text_size, vjust = 1.2, fontface = "bold") +
-    scale_y_reverse() + # 翻转Y轴，让 row=1 (offset_y最小) 显示在顶部
+    scale_y_reverse() +
     coord_fixed() +
     theme_void() +
     theme(
@@ -738,7 +731,7 @@ plot_thermal_montage <- function(img_list, ncol = NULL, padding = 10,
   p <- ggplot(big_df, aes(x = x_shifted, y = y_shifted, fill = val)) +
     # Use geom_tile with explicit width/height = 1 to ensure solid pixels
     geom_tile(width = 1, height = 1) +
-    scale_fill_viridis_c(option = palette, name = "Temp (°C)", na.value = "transparent") +
+    scale_fill_viridis_c(option = palette, name = "Temp (\u00B0C)", na.value = "transparent") +
     geom_text(data = labels_df, aes(x = x, y = y, label = label),
               inherit.aes = FALSE, color = text_color, size = text_size, vjust = 1.2, fontface = "bold") +
     scale_y_reverse() +
@@ -903,7 +896,7 @@ plot_thermal_cloud <- function(img_list, spread_factor = 1.1, jitter_factor = 0.
   p <- ggplot(big_df, aes(x = final_x, y = final_y, fill = val)) +
     # Force 1x1 pixel size to prevent gaps or invisibility
     geom_tile(width = 1, height = 1) +
-    scale_fill_viridis_c(option = palette, name = "Temp (°C)", na.value = "transparent") +
+    scale_fill_viridis_c(option = palette, name = "Temp (\u00B0C)", na.value = "transparent") +
     scale_y_reverse() +
     coord_fixed() +
     theme_void() +

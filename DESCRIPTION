@@ -22,10 +22,12 @@ RoxygenNote: 7.3.3
 Imports: 
     EBImage,
     ggplot2,
-    methods,
+    ggrepel,
+    ggsci,
+    plotly,
     shiny,
     stats,
-    Thermimage,
+    Thermimage
 Suggests: 
     knitr,
     rmarkdown,

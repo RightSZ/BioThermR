@@ -11,7 +11,7 @@ roi_filter_threshold(img_obj, threshold, use_processed = FALSE)
 
 \item{threshold}{Numeric vector of length 2, e.g., \code{c(22, 38)}.
 Defines the inclusive temperature range \code{[min, max]} to keep.
-Use \code{Inf} for open upper bounds (e.g., \code{c(25, Inf)} keeps everything above 25°C).}
+Use \code{Inf} for open upper bounds (e.g., \code{c(25, Inf)} keeps everything above 25 degrees Celsius).}
 
 \item{use_processed}{Logical.
 \itemize{
@@ -29,7 +29,7 @@ Masks the thermal image by retaining only pixels that fall within a specified
 \details{
 This is the most fundamental segmentation method for thermal images.
          Since animals are typically warmer than their environment, a simple low-pass filter
-         (e.g., keep > 22°C) is often sufficient to separate the subject from the cage.
+         (e.g., keep > 22 degrees Celsius) is often sufficient to separate the subject from the cage.
          Open boundaries can be defined using \code{Inf} or \code{-Inf}.
 }
 \examples{
