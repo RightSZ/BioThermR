@@ -1,0 +1,11 @@
+url: https://rightsz.github.io/BioThermR/
+template:
+  bootstrap: 5
+  theme: breeze-light
+  bslib:
+    bootswatch: litera
+navbar:
+  structure:
+    left:  [home, reference, articles, tutorials, news]
+    right: [search, github]
+

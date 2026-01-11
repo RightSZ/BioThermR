@@ -1,0 +1,33 @@
+Package: BioThermR
+Type: Package
+Title: Standardized Processing and Analysis of Thermal Imaging Data in Animal Studies
+Version: 0.1.0
+Authors@R: c(
+    person(
+      "BeiHao", "Li",
+      email = "szright2000@gmail.com",
+      role = c("aut", "cre")
+    )
+  )
+Description: A comprehensive framework for the standardized analysis of thermal
+    imaging data in animal experimentation. It integrates data import
+    (FLIR, raw, CSV), automated and interactive Region of Interest (ROI)
+    segmentation, and high-throughput batch processing.
+Depends: 
+    R (>= 4.1.0)
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.3
+Imports: 
+    EBImage,
+    ggplot2,
+    methods,
+    shiny,
+    stats,
+    Thermimage,
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr

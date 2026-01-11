@@ -1,0 +1,11 @@
+^.*\.Rproj$
+^README\.Rmd$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^BioThermR\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^\.github$
+^\.gitignore$
+^\.Rhistory$
