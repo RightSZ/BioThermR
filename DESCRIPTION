@@ -13,6 +13,8 @@ Description: A comprehensive framework for the standardized analysis of thermal
     imaging data in animal experimentation. It integrates data import
     (FLIR, raw, CSV), automated and interactive Region of Interest (ROI)
     segmentation, and high-throughput batch processing.
+URL: https://github.com/RightSZ/BioThermR, https://rightsz.github.io/BioThermR/
+BugReports: https://github.com/RightSZ/BioThermR/issues
 Depends: 
     R (>= 4.1.0)
 License: GPL (>= 3)

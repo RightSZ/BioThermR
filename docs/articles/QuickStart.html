@@ -41,6 +41,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/RightSZ/BioThermR/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -57,7 +58,7 @@
       <h1>Quickstart</h1>
             
       
-
+      <small class="dont-index">Source: <a href="https://github.com/RightSZ/BioThermR/blob/HEAD/vignettes/QuickStart.Rmd" class="external-link"><code>vignettes/QuickStart.Rmd</code></a></small>
       <div class="d-none name"><code>QuickStart.Rmd</code></div>
     </div>
 
@@ -68,7 +69,7 @@ biological research. This guide covers the core loop: Import -&gt;
 Segment -&gt; Measure -&gt; Visualize.</p>
 <p>First, load the package:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">BioThermR</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/RightSZ/BioThermR" class="external-link">BioThermR</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: package 'ggplot2' was built under R version 4.4.3</span></span></code></pre></div>
 <div class="section level2">
@@ -157,13 +158,13 @@ of code.</p>
 <span><span class="va">data_folder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"BioThermR"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Reading batch from:"</span>, <span class="va">data_folder</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Reading batch from: /private/var/folders/_b/gx4lc14d5ssf7pl9qlkl32r80000gn/T/RtmpY7k7rb/temp_libpath204b4464d62/BioThermR/extdata"</span></span>
+<span><span class="co">#&gt; [1] "Reading batch from: /private/var/folders/_b/gx4lc14d5ssf7pl9qlkl32r80000gn/T/RtmpASfHej/temp_libpath3567299b7748/BioThermR/extdata"</span></span>
 <span></span>
 <span><span class="co"># 2. Read the entire batch</span></span>
 <span><span class="co"># Note: We use pattern = ".raw" to ensure we only load the raw thermal files</span></span>
 <span><span class="va">batch_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_thermal_batch.html">read_thermal_batch</a></span><span class="op">(</span><span class="va">data_folder</span>, pattern <span class="op">=</span> <span class="st">"\\.raw$"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Reading 30 files...</span></span>
-<span><span class="co">#&gt; Batch read completed. Imported 30 files.</span></span>
+<span><span class="co">#&gt; Reading 29 files...</span></span>
+<span><span class="co">#&gt; Batch read completed. Imported 29 files.</span></span>
 <span></span>
 <span><span class="co"># 3. Batch Segmentation (Automated)</span></span>
 <span><span class="co"># We use lapply to apply the 'roi_segment_ebimage' function to every image in the list</span></span>
@@ -197,7 +198,6 @@ of code.</p>
 <span><span class="co">#&gt; Auto-Segmentation: Kept largest object ( 393 pixels )</span></span>
 <span><span class="co">#&gt; Auto-Segmentation: Kept largest object ( 371 pixels )</span></span>
 <span><span class="co">#&gt; Auto-Segmentation: Kept largest object ( 387 pixels )</span></span>
-<span><span class="co">#&gt; Auto-Segmentation: Kept largest object ( 362 pixels )</span></span>
 <span><span class="co">#&gt; Auto-Segmentation: Kept largest object ( 389 pixels )</span></span>
 <span></span>
 <span><span class="co"># 4. Visualization A: Gap-Free Montage</span></span>
@@ -213,7 +213,7 @@ of code.</p>
 <span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_thermal_cloud.html">plot_thermal_cloud</a></span><span class="op">(</span><span class="va">batch_list_clean</span>, spread_factor <span class="op">=</span> <span class="fl">1.5</span>, jitter_factor <span class="op">=</span> <span class="fl">0.5</span>, show_labels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Thermal Cloud: Population Overview"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Processing objects...</span></span>
-<span><span class="co">#&gt; Generating layout for 30 objects...</span></span>
+<span><span class="co">#&gt; Generating layout for 29 objects...</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="QuickStart_files/figure-html/batch_process-2.png" class="r-plt" width="768"></p>
 </div>
@@ -232,7 +232,7 @@ to CSV.</p>
 <span><span class="co"># 2. Compile into a tidy data frame</span></span>
 <span><span class="co"># Rows = Images, Columns = Metrics</span></span>
 <span><span class="va">df_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compile_batch_stats.html">compile_batch_stats</a></span><span class="op">(</span><span class="va">batch_list_stats</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Compiling statistics for 30 images...</span></span>
+<span><span class="co">#&gt; Compiling statistics for 29 images...</span></span>
 <span></span>
 <span><span class="co"># 3. View the first few rows</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_results</span><span class="op">)</span></span>

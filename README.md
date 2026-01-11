@@ -27,7 +27,7 @@ install the latest version from [GitHub](https://github.com/RightSZ/BioThermR) a
 ``` r
 if (!require("devtools", quietly = TRUE))
     install.packages("devtools")
-devtools::install_github("YourUsername/BioThermR")
+devtools::install_github("RightSZ/BioThermR")
 ```
 
 

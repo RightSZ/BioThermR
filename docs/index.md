@@ -35,7 +35,7 @@ install the latest version from
 ``` r
 if (!require("devtools", quietly = TRUE))
     install.packages("devtools")
-devtools::install_github("YourUsername/BioThermR")
+devtools::install_github("RightSZ/BioThermR")
 ```
 
 ## License

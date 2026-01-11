@@ -20,7 +20,7 @@ roi_filter_threshold(img_obj, threshold, use_processed = FALSE)
 
   Numeric vector of length 2, e.g., `c(22, 38)`. Defines the inclusive
   temperature range `[min, max]` to keep. Use `Inf` for open upper
-  bounds (e.g., `c(25, Inf)` keeps everything above 25°C).
+  bounds (e.g., `c(25, Inf)` keeps everything above 25 degrees Celsius).
 
 - use_processed:
 
@@ -41,9 +41,9 @@ A 'BioThermR' object with the `processed` matrix updated.
 
 This is the most fundamental segmentation method for thermal images.
 Since animals are typically warmer than their environment, a simple
-low-pass filter (e.g., keep \> 22°C) is often sufficient to separate the
-subject from the cage. Open boundaries can be defined using `Inf` or
-`-Inf`.
+low-pass filter (e.g., keep \> 22 degrees Celsius) is often sufficient
+to separate the subject from the cage. Open boundaries can be defined
+using `Inf` or `-Inf`.
 
 ## Examples
 

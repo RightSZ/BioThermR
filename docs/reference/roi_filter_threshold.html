@@ -24,6 +24,7 @@
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/RightSZ/BioThermR/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -33,7 +34,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Filter Thermal Image by Temperature Thresholds</h1>
-
+      <small class="dont-index">Source: <a href="https://github.com/RightSZ/BioThermR/blob/HEAD/R/roi.r" class="external-link"><code>R/roi.r</code></a></small>
       <div class="d-none name"><code>roi_filter_threshold.Rd</code></div>
     </div>
 
@@ -58,7 +59,7 @@
 <dt id="arg-threshold">threshold<a class="anchor" aria-label="anchor" href="#arg-threshold"></a></dt>
 <dd><p>Numeric vector of length 2, e.g., <code>c(22, 38)</code>.
 Defines the inclusive temperature range <code>[min, max]</code> to keep.
-Use <code>Inf</code> for open upper bounds (e.g., <code>c(25, Inf)</code> keeps everything above 25°C).</p></dd>
+Use <code>Inf</code> for open upper bounds (e.g., <code>c(25, Inf)</code> keeps everything above 25 degrees Celsius).</p></dd>
 
 
 <dt id="arg-use-processed">use_processed<a class="anchor" aria-label="anchor" href="#arg-use-processed"></a></dt>
@@ -75,7 +76,7 @@ Use <code>Inf</code> for open upper bounds (e.g., <code>c(25, Inf)</code> keeps 
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>This is the most fundamental segmentation method for thermal images.
          Since animals are typically warmer than their environment, a simple low-pass filter
-         (e.g., keep &gt; 22°C) is often sufficient to separate the subject from the cage.
+         (e.g., keep &gt; 22 degrees Celsius) is often sufficient to separate the subject from the cage.
          Open boundaries can be defined using <code>Inf</code> or <code>-Inf</code>.</p>
     </div>
 

@@ -9,6 +9,23 @@ A comprehensive framework for the standardized analysis of thermal imaging data 
 
 A comprehensive framework for the standardized analysis of thermal imaging data in animal experimentation. It integrates data import (FLIR, raw, CSV), automated and interactive Region of Interest (ROI) segmentation, and high-throughput batch processing.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/RightSZ/BioThermR}
+  \item \url{https://rightsz.github.io/BioThermR/}
+  \item Report bugs at \url{https://github.com/RightSZ/BioThermR/issues}
+}
+
+
+Useful links:
+\itemize{
+  \item \url{https://github.com/RightSZ/BioThermR}
+  \item \url{https://rightsz.github.io/BioThermR/}
+  \item Report bugs at \url{https://github.com/RightSZ/BioThermR/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: BeiHao Li \email{szright2000@gmail.com}
 
