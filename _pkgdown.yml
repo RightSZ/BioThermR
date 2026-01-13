@@ -9,3 +9,13 @@ navbar:
     left:  [home, reference, articles, tutorials, news]
     right: [search, github]
 
+articles:
+  - title: "Get Started"
+    navbar: "Get Started"
+    contents:
+      - QuickStart
+
+  - title: "Case Studies"
+    navbar: "Case Studies"
+    contents:
+      - BioThermR_case_study

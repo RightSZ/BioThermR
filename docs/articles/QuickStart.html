@@ -33,7 +33,12 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/QuickStart.html">Quickstart</a></li>
+<li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Get Started</h6></li>
+    <li><a class="dropdown-item" href="../articles/QuickStart.html">Quickstart</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Case Studies</h6></li>
+    <li><a class="dropdown-item" href="../articles/BioThermR_case_study.html">Case Study Demo</a></li>
   </ul>
 </li>
       </ul>
@@ -158,13 +163,13 @@ of code.</p>
 <span><span class="va">data_folder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"BioThermR"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Reading batch from:"</span>, <span class="va">data_folder</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Reading batch from: /private/var/folders/_b/gx4lc14d5ssf7pl9qlkl32r80000gn/T/RtmpASfHej/temp_libpath3567299b7748/BioThermR/extdata"</span></span>
+<span><span class="co">#&gt; [1] "Reading batch from: /private/var/folders/_b/gx4lc14d5ssf7pl9qlkl32r80000gn/T/Rtmplk9gGc/temp_libpathafd7584a4691/BioThermR/extdata"</span></span>
 <span></span>
 <span><span class="co"># 2. Read the entire batch</span></span>
 <span><span class="co"># Note: We use pattern = ".raw" to ensure we only load the raw thermal files</span></span>
 <span><span class="va">batch_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_thermal_batch.html">read_thermal_batch</a></span><span class="op">(</span><span class="va">data_folder</span>, pattern <span class="op">=</span> <span class="st">"\\.raw$"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Reading 29 files...</span></span>
-<span><span class="co">#&gt; Batch read completed. Imported 29 files.</span></span>
+<span><span class="co">#&gt; Reading 30 files...</span></span>
+<span><span class="co">#&gt; Batch read completed. Imported 30 files.</span></span>
 <span></span>
 <span><span class="co"># 3. Batch Segmentation (Automated)</span></span>
 <span><span class="co"># We use lapply to apply the 'roi_segment_ebimage' function to every image in the list</span></span>
@@ -198,6 +203,7 @@ of code.</p>
 <span><span class="co">#&gt; Auto-Segmentation: Kept largest object ( 393 pixels )</span></span>
 <span><span class="co">#&gt; Auto-Segmentation: Kept largest object ( 371 pixels )</span></span>
 <span><span class="co">#&gt; Auto-Segmentation: Kept largest object ( 387 pixels )</span></span>
+<span><span class="co">#&gt; Auto-Segmentation: Kept largest object ( 362 pixels )</span></span>
 <span><span class="co">#&gt; Auto-Segmentation: Kept largest object ( 389 pixels )</span></span>
 <span></span>
 <span><span class="co"># 4. Visualization A: Gap-Free Montage</span></span>
@@ -213,7 +219,7 @@ of code.</p>
 <span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_thermal_cloud.html">plot_thermal_cloud</a></span><span class="op">(</span><span class="va">batch_list_clean</span>, spread_factor <span class="op">=</span> <span class="fl">1.5</span>, jitter_factor <span class="op">=</span> <span class="fl">0.5</span>, show_labels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Thermal Cloud: Population Overview"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Processing objects...</span></span>
-<span><span class="co">#&gt; Generating layout for 29 objects...</span></span>
+<span><span class="co">#&gt; Generating layout for 30 objects...</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="QuickStart_files/figure-html/batch_process-2.png" class="r-plt" width="768"></p>
 </div>
@@ -232,7 +238,7 @@ to CSV.</p>
 <span><span class="co"># 2. Compile into a tidy data frame</span></span>
 <span><span class="co"># Rows = Images, Columns = Metrics</span></span>
 <span><span class="va">df_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compile_batch_stats.html">compile_batch_stats</a></span><span class="op">(</span><span class="va">batch_list_stats</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Compiling statistics for 29 images...</span></span>
+<span><span class="co">#&gt; Compiling statistics for 30 images...</span></span>
 <span></span>
 <span><span class="co"># 3. View the first few rows</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_results</span><span class="op">)</span></span>

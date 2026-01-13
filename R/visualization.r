@@ -917,3 +917,111 @@ plot_thermal_cloud <- function(img_list, spread_factor = 1.1, jitter_factor = 0.
 
   return(p)
 }
+
+#' @title Visualize ROI Overlap and Dice Coefficient
+#' @description Visually compares two segmentation masks (ROIs) by overlaying them on the original thermal image.
+#'              This function is primarily used for validation purposes: to compare an automated segmentation
+#'              (filled layer) against a manual ground truth (contour line).
+#'              It automatically calculates and displays the \strong{Dice Similarity Coefficient (DSC)} in the title.
+#'
+#' @details The visualization consists of three layers:
+#'          \enumerate{
+#'            \item \strong{Background:} The raw thermal image from \code{img_obj1}.
+#'            \item \strong{Prediction (img_obj1):} The processed mask from the first object, rendered as a semi-transparent filled raster (default green).
+#'            \item \strong{Ground Truth (img_obj2):} The processed mask from the second object, rendered as a contour outline (default white).
+#'          }
+#'          The function calculates the Dice Similarity Coefficient (DSC) using the formula:
+#'          \deqn{DSC = \frac{2 \times |X \cap Y|}{|X| + |Y|}}
+#'          where X and Y are the set of pixels in the two masks. A DSC of 1 indicates perfect overlap.
+#'
+#' @param img_obj1 A 'BioThermR' object. Typically the \strong{Automated/Predicted} segmentation.
+#'                 This object must contain the raw thermal matrix. Its mask will be plotted as a filled area.
+#' @param img_obj2 A 'BioThermR' object. Typically the \strong{Manual/Ground Truth} segmentation.
+#'                 Its mask will be plotted as a contour outline. Dimensions must match \code{img_obj1}.
+#' @param title String. Custom title for the plot. If \code{NULL} (default), the title shows "ROI overlap (DICE: X.XXX)".
+#' @param color String. Fill color for the \code{img_obj1} mask. Default is "green".
+#' @param alpha Numeric. Transparency level for the \code{img_obj1} mask (0 to 1). Default is 0.5.
+#' @param line_color String. Line color for the \code{img_obj2} contour. Default is "white".
+#' @param palette String. Color palette for the background thermal image (passed to \code{scale_fill_viridis_c}).
+#'                Default is "inferno".
+#'
+#' @return A \code{ggplot} object showing the overlay.
+#' @import ggplot2
+#' @export
+#' @examples
+#' \dontrun{
+#' # 1. Automated Segmentation
+#' auto_obj <- roi_segment_ebimage(my_image)
+#'
+#' # 2. Manual Segmentation
+#' manual_obj <- roi_filter_interactive(my_image)
+#'
+#' # 3. Compare them
+#' plot_roi_overlap(img_obj1 = auto_obj,
+#'                  img_obj2 = manual_obj,
+#'                  color = "blue",
+#'                  line_color = "red")
+#' }
+plot_roi_overlap <- function(img_obj1, img_obj2,
+                             title = NULL,
+                             color = "green",
+                             alpha = 0.5,
+                             line_color = "white",
+                             palette = "inferno") {
+  if (!inherits(img_obj1, "BioThermR")) {
+    stop("Error: Input must be a 'BioThermR' object.")
+  }
+  if (!inherits(img_obj2, "BioThermR")) {
+    stop("Error: Input must be a 'BioThermR' object.")
+  }
+  if (!is.null(img_obj1$raw)) base_temp_mat <- img_obj1$raw
+  auto_mat <- img_obj1$processed
+  manual_mat <- img_obj2$processed
+
+  stopifnot(all(dim(base_temp_mat) == dim(manual_mat)),
+            all(dim(base_temp_mat) == dim(auto_mat)))
+  dice_coef <- function(a, b) {
+    a <- as.logical(a)
+    b <- as.logical(b)
+    if (sum(a) + sum(b) == 0) return(0)
+    2 * sum(a & b) / (sum(a) + sum(b))
+  }
+  df_base <- expand.grid(
+    x = seq_len(nrow(base_temp_mat)),
+    y = seq_len(ncol(base_temp_mat))
+  )
+  df_base$temp <- c(base_temp_mat)
+
+  auto_mask <- !is.na(auto_mat)
+  df_auto <- df_base
+  df_auto$auto <- c(auto_mask)
+
+  manual_mask <- !is.na(manual_mat)
+  df_manual <- df_base
+  df_manual$manual <- c(manual_mask)
+  dice<-dice_coef(auto_mask,manual_mask)
+  if(is.null(title))title <- paste("ROI overlap (DICE:",round(dice,3),")")
+
+  p<-ggplot() +
+    geom_raster(data = df_base, aes(x = y, y = x, fill = temp)) +
+    scale_fill_viridis_c(option = palette, name = "Temp (\u00B0C)", na.value = "transparent") +
+
+    geom_raster(data = subset(df_auto, auto),
+                aes(x = y, y = x),
+                fill = color, alpha = alpha) +
+    geom_contour(data = df_manual,
+                 aes(x = y, y = x, z = as.numeric(manual)),
+                 breaks = 0.5, color = line_color, linewidth = 0.5) +
+    coord_fixed(expand = FALSE) +
+    labs(title = title) +
+    theme_minimal(base_size = 10) +
+    theme(
+      axis.title = element_blank(),
+      axis.text  = element_blank(),
+      axis.ticks = element_blank(),
+      panel.grid = element_blank()
+    )
+  return(p)
+}
+
+

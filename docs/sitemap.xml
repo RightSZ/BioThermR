@@ -1,6 +1,7 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://rightsz.github.io/BioThermR/404.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/LICENSE.html</loc></url>
+<url><loc>https://rightsz.github.io/BioThermR/articles/BioThermR_case_study.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/articles/QuickStart.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/articles/index.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/authors.html</loc></url>
@@ -15,6 +16,7 @@
 <url><loc>https://rightsz.github.io/BioThermR/reference/index.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/reference/load_biothermr.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/reference/merge_clinical_data.html</loc></url>
+<url><loc>https://rightsz.github.io/BioThermR/reference/plot_roi_overlap.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/reference/plot_thermal_3d.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/reference/plot_thermal_cloud.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/reference/plot_thermal_density.html</loc></url>

@@ -103,13 +103,13 @@ and visualize all of them in a few lines of code.
 data_folder <- system.file("extdata", package = "BioThermR")
 
 print(paste("Reading batch from:", data_folder))
-#> [1] "Reading batch from: /private/var/folders/_b/gx4lc14d5ssf7pl9qlkl32r80000gn/T/RtmpASfHej/temp_libpath3567299b7748/BioThermR/extdata"
+#> [1] "Reading batch from: /private/var/folders/_b/gx4lc14d5ssf7pl9qlkl32r80000gn/T/Rtmplk9gGc/temp_libpathafd7584a4691/BioThermR/extdata"
 
 # 2. Read the entire batch
 # Note: We use pattern = ".raw" to ensure we only load the raw thermal files
 batch_list <- read_thermal_batch(data_folder, pattern = "\\.raw$")
-#> Reading 29 files...
-#> Batch read completed. Imported 29 files.
+#> Reading 30 files...
+#> Batch read completed. Imported 30 files.
 
 # 3. Batch Segmentation (Automated)
 # We use lapply to apply the 'roi_segment_ebimage' function to every image in the list
@@ -143,6 +143,7 @@ batch_list_clean <- lapply(batch_list, roi_segment_ebimage)
 #> Auto-Segmentation: Kept largest object ( 393 pixels )
 #> Auto-Segmentation: Kept largest object ( 371 pixels )
 #> Auto-Segmentation: Kept largest object ( 387 pixels )
+#> Auto-Segmentation: Kept largest object ( 362 pixels )
 #> Auto-Segmentation: Kept largest object ( 389 pixels )
 
 # 4. Visualization A: Gap-Free Montage
@@ -161,7 +162,7 @@ print(p1)
 p2 <- plot_thermal_cloud(batch_list_clean, spread_factor = 1.5, jitter_factor = 0.5, show_labels = TRUE) + 
   ggtitle("Thermal Cloud: Population Overview")
 #> Processing objects...
-#> Generating layout for 29 objects...
+#> Generating layout for 30 objects...
 print(p2)
 ```
 
@@ -182,7 +183,7 @@ batch_list_stats <- lapply(batch_list_clean, analyze_thermal_stats)
 # 2. Compile into a tidy data frame
 # Rows = Images, Columns = Metrics
 df_results <- compile_batch_stats(batch_list_stats)
-#> Compiling statistics for 29 images...
+#> Compiling statistics for 30 images...
 
 # 3. View the first few rows
 head(df_results)

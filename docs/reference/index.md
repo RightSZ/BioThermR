@@ -18,6 +18,8 @@
   : Load BioThermR Data from Disk
 - [`merge_clinical_data()`](https://rightsz.github.io/BioThermR/reference/merge_clinical_data.md)
   : Merge Thermal Stats with Clinical Data
+- [`plot_roi_overlap()`](https://rightsz.github.io/BioThermR/reference/plot_roi_overlap.md)
+  : Visualize ROI Overlap and Dice Coefficient
 - [`plot_thermal_3d()`](https://rightsz.github.io/BioThermR/reference/plot_thermal_3d.md)
   : Interactive 3D Thermal Surface Plot
 - [`plot_thermal_cloud()`](https://rightsz.github.io/BioThermR/reference/plot_thermal_cloud.md)
