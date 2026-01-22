@@ -1,14 +1,18 @@
 # BioThermR: Standardized Processing and Analysis of Thermal Imaging Data in Animal Studies
 
-A comprehensive framework for the standardized analysis of thermal
-imaging data in animal experimentation. It integrates data import (FLIR,
-raw, CSV), automated and interactive Region of Interest (ROI)
-segmentation, and high-throughput batch processing.
+A modular framework for standardized analysis of thermal imaging data in
+animal experimentation. The package integrates thermographic data import
+(FLIR, raw, CSV), automated region of interest (ROI) segmentation based
+on 'EBImage' (Pau et al., 2010
+[doi:10.1093/bioinformatics/btq046](https://doi.org/10.1093/bioinformatics/btq046)
+), interactive ROI refinement, and high-throughput batch processing.
 
-A comprehensive framework for the standardized analysis of thermal
-imaging data in animal experimentation. It integrates data import (FLIR,
-raw, CSV), automated and interactive Region of Interest (ROI)
-segmentation, and high-throughput batch processing.
+A modular framework for standardized analysis of thermal imaging data in
+animal experimentation. The package integrates thermographic data import
+(FLIR, raw, CSV), automated region of interest (ROI) segmentation based
+on 'EBImage' (Pau et al., 2010
+[doi:10.1093/bioinformatics/btq046](https://doi.org/10.1093/bioinformatics/btq046)
+), interactive ROI refinement, and high-throughput batch processing.
 
 ## See also
 

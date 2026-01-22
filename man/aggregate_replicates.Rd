@@ -29,12 +29,19 @@ Collapses technical replicates (e.g., multiple thermal images taken of the same 
              pseudoreplication in downstream statistical analyses (e.g., t-tests, ANOVA).
 }
 \examples{
-\dontrun{
+# Create a toy dataset with repeated measurements
+df_raw <- data.frame(
+  SampleID = rep(paste0("M", 1:3), each = 3),
+  Group = rep(c("ND", "HFD", "ND"), each = 3),
+  Sex = rep("M", 9),
+  Median = runif(9, 33, 36),
+  IQR = runif(9, 0.5, 1.5)
+)
+
 df <- aggregate_replicates(
   data = df_raw,
   id_col = "SampleID",
   method = "median",
   keep_cols = c("Group", "Sex")
 )
-}
 }

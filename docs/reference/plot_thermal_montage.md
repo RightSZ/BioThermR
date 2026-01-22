@@ -72,14 +72,16 @@ continuous, gap-free visualization.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Load a batch of images
-batch <- read_thermal_batch("data/cohort_A")
+img_obj_list <- system.file("extdata",package = "BioThermR")
+batch <- read_thermal_batch(img_obj_list)
+#> Reading 30 files...
+#> Batch read completed. Imported 30 files.
 
 # Create a montage with 4 columns
 p <- plot_thermal_montage(batch, ncol = 4, padding = 20)
-
-# Save the high-res result
-ggsave("montage_cohort_A.png", p, width = 12, height = 10, dpi = 300)
-} # }
+#> Scanning objects for bounding box dimensions...
+#> Montage Layout: 8 x 4 | Cell Size: 180 x 140
+# }
 ```

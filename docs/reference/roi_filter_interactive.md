@@ -56,19 +56,3 @@ follows:
 
 5.  **Export:** Click "Finish & Export Data" to close the app and return
     the processed object list to the R console.
-
-## Examples
-
-``` r
-if (FALSE) { # \dontrun{
-# 1. Load batch
-my_data <- read_thermal_batch("raw_images/")
-
-# 2. Launch interactive selector starting from the 10th image
-# The app allows you to manually refine ROIs and remove noise
-my_data_cleaned <- roi_filter_interactive(my_data, start_index = 10)
-
-# 3. Save the result immediately after closing the app
-save_biothermr(my_data_cleaned, "data_cleaned.rds")
-} # }
-```

@@ -54,12 +54,17 @@ subsequently (e.g., new titles or annotations).
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-# Standard plot
-p <- plot_thermal_heatmap(my_obj)
-print(p)
+# \donttest{
+# Load raw data
+img_obj <- system.file("extdata", "C05.raw", package = "BioThermR")
+img <- read_thermal_raw(img_obj)
 
-# Customize plot (e.g., change title)
-p + ggplot2::ggtitle("Subject A - Cold Exposure")
-} # }
+# Apply automated segmentation
+img <- roi_segment_ebimage(img, keep_largest = TRUE)
+#> Auto-Segmentation: Kept largest object ( 401 pixels )
+
+# Standard plot
+plot_thermal_heatmap(img)
+
+# }
 ```

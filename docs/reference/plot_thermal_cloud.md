@@ -81,14 +81,47 @@ The spacing and randomness of the spiral can be tuned using
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-# Load data
-batch <- read_thermal_batch("data/mice")
+# \donttest{
+# Load a batch of images
+img_obj_list <- system.file("extdata",package = "BioThermR")
+batch <- read_thermal_batch(img_obj_list)
+#> Reading 30 files...
+#> Batch read completed. Imported 30 files.
+batch <- lapply(batch, roi_segment_ebimage)
+#> Auto-Segmentation: Kept largest object ( 401 pixels )
+#> Auto-Segmentation: Kept largest object ( 388 pixels )
+#> Auto-Segmentation: Kept largest object ( 419 pixels )
+#> Auto-Segmentation: Kept largest object ( 342 pixels )
+#> Auto-Segmentation: Kept largest object ( 356 pixels )
+#> Auto-Segmentation: Kept largest object ( 327 pixels )
+#> Auto-Segmentation: Kept largest object ( 390 pixels )
+#> Auto-Segmentation: Kept largest object ( 455 pixels )
+#> Auto-Segmentation: Kept largest object ( 409 pixels )
+#> Auto-Segmentation: Kept largest object ( 330 pixels )
+#> Auto-Segmentation: Kept largest object ( 325 pixels )
+#> Auto-Segmentation: Kept largest object ( 320 pixels )
+#> Auto-Segmentation: Kept largest object ( 388 pixels )
+#> Auto-Segmentation: Kept largest object ( 419 pixels )
+#> Auto-Segmentation: Kept largest object ( 414 pixels )
+#> Auto-Segmentation: Kept largest object ( 366 pixels )
+#> Auto-Segmentation: Kept largest object ( 353 pixels )
+#> Auto-Segmentation: Kept largest object ( 347 pixels )
+#> Auto-Segmentation: Kept largest object ( 399 pixels )
+#> Auto-Segmentation: Kept largest object ( 407 pixels )
+#> Auto-Segmentation: Kept largest object ( 382 pixels )
+#> Auto-Segmentation: Kept largest object ( 298 pixels )
+#> Auto-Segmentation: Kept largest object ( 349 pixels )
+#> Auto-Segmentation: Kept largest object ( 362 pixels )
+#> Auto-Segmentation: Kept largest object ( 412 pixels )
+#> Auto-Segmentation: Kept largest object ( 393 pixels )
+#> Auto-Segmentation: Kept largest object ( 371 pixels )
+#> Auto-Segmentation: Kept largest object ( 387 pixels )
+#> Auto-Segmentation: Kept largest object ( 362 pixels )
+#> Auto-Segmentation: Kept largest object ( 389 pixels )
 
 # Create an artistic thermal cloud
 p_cloud <- plot_thermal_cloud(batch, spread_factor = 1.5, jitter_factor = 2.0)
-
-# Save for cover art
-ggsave("thermal_cloud_cover.png", p_cloud, width = 15, height = 15, dpi = 300)
-} # }
+#> Processing objects...
+#> Generating layout for 30 objects...
+# }
 ```

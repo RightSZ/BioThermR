@@ -15,9 +15,8 @@
 #'
 #' @export
 #' @examples
-#' \dontrun{
-#' img <- read_thermal_raw("data/sample.raw")
-#' }
+#' img_obj <- system.file("extdata", "C05.raw", package = "BioThermR")
+#' img <- read_thermal_raw(img_obj)
 read_thermal_raw <- function(file_path, width = 160, height = 120, rotate = TRUE) {
 
   # 1. Check if file exists
@@ -93,8 +92,10 @@ read_thermal_raw <- function(file_path, width = 160, height = 120, rotate = TRUE
 #' @importFrom Thermimage flirsettings readflirJPG raw2temp
 #' @export
 #' @examples
-#' \dontrun{
-#' img <- read_thermal_flir("data/mouse_flir.jpg")
+#' \donttest{
+#' # Example using a flir thermal file
+#' img_obj <- system.file("extdata", "IR_2412.jpg", package = "Thermimage")
+#' img <- read_thermal_flir(img_obj)
 #' }
 read_thermal_flir <- function(file_path, exiftoolpath = "installed") {
 
@@ -190,6 +191,12 @@ read_thermal_flir <- function(file_path, exiftoolpath = "installed") {
 #'
 #' @return A named list of "BioThermR" objects.
 #' @export
+#' @examples
+#' \donttest{
+#' # Example using raw thermal files
+#' img_obj_list <- system.file("extdata",package = "BioThermR")
+#' img_list <- read_thermal_batch(img_obj_list)
+#' }
 read_thermal_batch <- function(folder_path, pattern = "\\.raw$", recursive = FALSE, ...) {
 
   if (!dir.exists(folder_path)) {
@@ -238,11 +245,9 @@ read_thermal_batch <- function(folder_path, pattern = "\\.raw$", recursive = FAL
 #' @return A 'BioThermR' object.
 #' @export
 #' @examples
-#' \dontrun{
 #' mat <- matrix(runif(160*120, 20, 40), nrow = 120, ncol = 160)
 #' obj <- create_BioThermR(mat, name = "Simulation_01")
 #' plot_thermal_heatmap(obj)
-#' }
 create_BioThermR <- function(data, name = "Sample") {
 
   # 1. Input Validation & Conversion
@@ -306,15 +311,16 @@ create_BioThermR <- function(data, name = "Sample") {
 #' @importFrom EBImage Image
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Load data
-#' my_obj <- read_thermal_flir("data/mouse.jpg")
+#' mat <- matrix(runif(160*120, 20, 40), nrow = 120, ncol = 160)
+#' obj <- create_BioThermR(mat, name = "Simulation_01")
 #'
 #' # Convert to EBImage format with normalization (for thresholding)
-#' eb_norm <- as_EBImage(my_obj, normalize = TRUE)
+#' eb_norm <- as_EBImage(obj, normalize = TRUE)
 #'
 #' # Convert preserving temperature values (for calculation)
-#' eb_temp <- as_EBImage(my_obj, normalize = FALSE)
+#' eb_temp <- as_EBImage(obj, normalize = FALSE)
 #' }
 as_EBImage <- function(img_obj, use_processed = TRUE, replace_na = 0, normalize = FALSE) {
 
@@ -383,6 +389,18 @@ as_EBImage <- function(img_obj, use_processed = TRUE, replace_na = 0, normalize 
 #' @return A 'BioThermR' object with the imported matrix stored in the \code{processed} slot.
 #' @importFrom EBImage Image
 #' @export
+#' @examples
+#' \donttest{
+#' # Load data
+#' mat <- matrix(runif(160*120, 20, 40), nrow = 120, ncol = 160)
+#' obj <- create_BioThermR(mat, name = "Simulation_01")
+#'
+#' # Convert to EBImage format with normalization
+#' eb_obj <- as_EBImage(obj, normalize = TRUE)
+#'
+#' # Convert to BioThermR from EBImage
+#' new_obj <- from_EBImage(eb_obj)
+#' }
 from_EBImage <- function(eb_img, template_obj = NULL, name = "Imported_EBImage", mask_zero = FALSE) {
 
   # Check dependency
@@ -458,9 +476,14 @@ from_EBImage <- function(eb_img, template_obj = NULL, name = "Imported_EBImage",
 #' @return None (invisible \code{NULL}). Prints a success message to the console upon completion.
 #' @export
 #' @examples
-#' \dontrun{
-#' # Save a single processed object
-#' save_biothermr(mouse_obj, "data/processed/mouse_01.rds")
+#' \donttest{
+#' # Load data
+#' mat <- matrix(runif(160*120, 20, 40), nrow = 120, ncol = 160)
+#' obj <- create_BioThermR(mat, name = "Simulation_01")
+#'
+#' # Save a single object to a temporary directory
+#' out_file <- file.path(tempdir(), "mouse_01.rds")
+#' save_biothermr(obj, out_file)
 #' }
 save_biothermr <- function(img_input, file_path) {
 
@@ -504,10 +527,6 @@ save_biothermr <- function(img_input, file_path) {
 #'         of the saved data.
 #' @seealso \code{\link{save_biothermr}}
 #' @export
-#' @examples
-#' \dontrun{
-#' my_mouse <- load_biothermr("data/obj.rds")
-#' }
 load_biothermr <- function(file_path) {
 
   if (!file.exists(file_path)) {

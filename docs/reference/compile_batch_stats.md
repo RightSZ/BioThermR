@@ -34,15 +34,16 @@ A `data.frame` where:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # 1. Import and Process
-batch <- read_thermal_batch("data/")
-batch <- lapply(batch, analyze_thermal_stats)
+img_obj_list <- system.file("extdata",package = "BioThermR")
+img_list <- read_thermal_batch(img_obj_list)
+#> Reading 30 files...
+#> Batch read completed. Imported 30 files.
+img_list <- lapply(img_list, analyze_thermal_stats)
 
 # 2. Compile Results
-df_results <- compile_batch_stats(batch)
-
-# 3. View
-head(df_results)
-} # }
+df_results <- compile_batch_stats(img_list)
+#> Compiling statistics for 30 images...
+# }
 ```

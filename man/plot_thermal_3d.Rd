@@ -30,11 +30,15 @@ Generates a rotatable, interactive 3D surface plot using the 'plotly' engine.
          The output is an HTML widget that allows zooming, panning, and hovering to see specific pixel values.
 }
 \examples{
-\dontrun{
-# Create an interactive 3D plot
-p_3d <- plot_thermal_3d(my_obj)
+\donttest{
+# Load raw data
+img_obj <- system.file("extdata", "C05.raw", package = "BioThermR")
+img <- read_thermal_raw(img_obj)
 
-# Display it (opens in Viewer or Browser)
-p_3d
+# Apply automated segmentation
+img <- roi_segment_ebimage(img, keep_largest = TRUE)
+
+# 3d plot
+plot_thermal_3d(img)
 }
 }

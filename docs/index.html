@@ -11,8 +11,8 @@
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Standardized Processing and Analysis of Thermal Imaging Data in Animal Studies">
-<meta name="description" content="A comprehensive framework for the standardized analysis of thermal imaging data in animal experimentation. It integrates data import (FLIR, raw, CSV), automated and interactive Region of Interest (ROI) segmentation, and high-throughput batch processing.">
-<meta property="og:description" content="A comprehensive framework for the standardized analysis of thermal imaging data in animal experimentation. It integrates data import (FLIR, raw, CSV), automated and interactive Region of Interest (ROI) segmentation, and high-throughput batch processing.">
+<meta name="description" content="A modular framework for standardized analysis of thermal imaging data in animal experimentation. The package integrates thermographic data import (FLIR, raw, CSV), automated region of interest (ROI) segmentation based on EBImage (Pau et al., 2010 &lt;doi:10.1093/bioinformatics/btq046&gt;), interactive ROI refinement, and high-throughput batch processing.">
+<meta property="og:description" content="A modular framework for standardized analysis of thermal imaging data in animal experimentation. The package integrates thermographic data import (FLIR, raw, CSV), automated region of interest (ROI) segmentation based on EBImage (Pau et al., 2010 &lt;doi:10.1093/bioinformatics/btq046&gt;), interactive ROI refinement, and high-throughput batch processing.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -70,15 +70,17 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://bioconductor.github.io/BiocManager/" class="external-link">"BiocManager"</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"EBImage"</span><span class="op">)</span></span></code></pre></div>
-<p>Install the latest development version from <a href="https://github.com/RightSZ/BioThermR" class="external-link">GitHub</a> as follow:</p>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"EBImage"</span><span class="op">)</span></span></code></pre></div>
+<p>Install the stable release from <a href="https://CRAN.R-project.org/package=BioThermR" class="external-link">CRAN</a> as follow:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">"devtools"</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># Install from CRAN</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BioThermR"</span><span class="op">)</span></span></code></pre></div>
+<p>Install the latest development version from <a href="https://github.com/RightSZ/BioThermR" class="external-link">GitHub</a> as follow:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Install the development version from GitHub</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">"devtools"</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"RightSZ/BioThermR"</span><span class="op">)</span></span></code></pre></div>
-<p>CRAN availability</p>
-<p>Submission to CRAN is currently in progress. The package will be available on CRAN upon acceptance.</p>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
@@ -89,6 +91,7 @@
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=BioThermR" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/RightSZ/BioThermR/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/RightSZ/BioThermR/issues" class="external-link">Report a bug</a></li>
 </ul>

@@ -24,13 +24,16 @@
 #' @import ggplot2
 #' @export
 #' @examples
-#' \dontrun{
-#' # Standard plot
-#' p <- plot_thermal_heatmap(my_obj)
-#' print(p)
+#' \donttest{
+#' # Load raw data
+#' img_obj <- system.file("extdata", "C05.raw", package = "BioThermR")
+#' img <- read_thermal_raw(img_obj)
 #'
-#' # Customize plot (e.g., change title)
-#' p + ggplot2::ggtitle("Subject A - Cold Exposure")
+#' # Apply automated segmentation
+#' img <- roi_segment_ebimage(img, keep_largest = TRUE)
+#'
+#' # Standard plot
+#' plot_thermal_heatmap(img)
 #' }
 plot_thermal_heatmap <- function(img_obj, use_processed = TRUE, palette = "inferno") {
 
@@ -96,15 +99,16 @@ plot_thermal_heatmap <- function(img_obj, use_processed = TRUE, palette = "infer
 #' @importFrom stats density
 #' @export
 #' @examples
-#' \dontrun{
-#' # Basic density plot
-#' p <- plot_thermal_density(my_obj)
+#' \donttest{
+#' # Load raw data
+#' img_obj <- system.file("extdata", "C05.raw", package = "BioThermR")
+#' img <- read_thermal_raw(img_obj)
 #'
-#' # Customized plot for publication
-#' p_custom <- plot_thermal_density(my_obj,
-#'                                  color = "grey80",
-#'                                  point_color = "blue",
-#'                                  show_min = FALSE) # Hide min label
+#' # Apply automated segmentation
+#' img <- roi_segment_ebimage(img, keep_largest = TRUE)
+#'
+#' # Density plot
+#' plot_thermal_density(img)
 #' }
 plot_thermal_density <- function(img_obj, use_processed = TRUE, show_peak = TRUE,
                                  show_max = TRUE, show_min = TRUE, digits = 2,color = "skyblue",
@@ -197,12 +201,16 @@ plot_thermal_density <- function(img_obj, use_processed = TRUE, show_peak = TRUE
 #' @importFrom plotly plot_ly add_surface layout
 #' @export
 #' @examples
-#' \dontrun{
-#' # Create an interactive 3D plot
-#' p_3d <- plot_thermal_3d(my_obj)
+#' \donttest{
+#' # Load raw data
+#' img_obj <- system.file("extdata", "C05.raw", package = "BioThermR")
+#' img <- read_thermal_raw(img_obj)
 #'
-#' # Display it (opens in Viewer or Browser)
-#' p_3d
+#' # Apply automated segmentation
+#' img <- roi_segment_ebimage(img, keep_largest = TRUE)
+#'
+#' # 3d plot
+#' plot_thermal_3d(img)
 #' }
 plot_thermal_3d <- function(img_obj, use_processed = TRUE) {
 
@@ -272,18 +280,14 @@ plot_thermal_3d <- function(img_obj, use_processed = TRUE) {
 #' @importFrom grDevices colorRampPalette
 #' @export
 #' @examples
-#' \dontrun{
-#' # Basic plot with NPG colors
-#' p <- viz_thermal_barplot(df_bio, y_var = "Max", x_var = "Group")
+#' df_bio <- data.frame(
+#'   Treatment = rep(c("ND", "HFD"), each = 5),
+#'   Mean = c(runif(5, 33, 35), runif(5, 34, 36))
+#' )
 #'
-#' # Customizing error bars and point style
-#' p_se <- viz_thermal_barplot(df_bio,
-#'                             y_var = "Mean",
-#'                             x_var = "Genotype",
-#'                             error_bar = "mean_se",
-#'                             point_size = 2.0,
-#'                             point_alpha = 0.8)
-#' }
+#' # Boxplot with individual points
+#' p <- viz_thermal_barplot(df_bio,y_var="Mean",x_var="Treatment",error_bar = "mean_se")
+#' p
 viz_thermal_barplot <- function(data, y_var, x_var,
                                 fill_var = NULL,
                                 error_bar = "mean_sd",
@@ -383,10 +387,14 @@ viz_thermal_barplot <- function(data, y_var, x_var,
 #' @importFrom grDevices colorRampPalette
 #' @export
 #' @examples
-#' \dontrun{
-#' # Standard boxplot with individual points
+#' df_bio <- data.frame(
+#'   Treatment = rep(c("ND", "HFD"), each = 5),
+#'   Mean = c(runif(5, 33, 35), runif(5, 34, 36))
+#' )
+#'
+#' # Boxplot with individual points
 #' p <- viz_thermal_boxplot(df_bio, y_var = "Mean", x_var = "Treatment")
-#' }
+#' p
 viz_thermal_boxplot <- function(data, y_var, x_var,
                                  fill_var = NULL,
                                  add_points = TRUE,
@@ -463,6 +471,15 @@ viz_thermal_boxplot <- function(data, y_var, x_var,
 #' @return A ggplot object.
 #' @import ggplot2
 #' @export
+#' @examples
+#' \donttest{
+#' # Load a batch of images
+#' img_obj_list <- system.file("extdata",package = "BioThermR")
+#' batch <- read_thermal_batch(img_obj_list)
+#'
+#' # Create a montage2 with 4 columns
+#' p <- viz_thermal_montage2(batch, ncol = 4, padding = 20)
+#' }
 viz_thermal_montage2 <- function(img_list, ncol = NULL, padding = 10,
                                 palette = "inferno", text_color = "white", text_size = 4) {
 
@@ -603,15 +620,13 @@ viz_thermal_montage2 <- function(img_list, ncol = NULL, padding = 10,
 #' @importFrom tools file_path_sans_ext
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Load a batch of images
-#' batch <- read_thermal_batch("data/cohort_A")
+#' img_obj_list <- system.file("extdata",package = "BioThermR")
+#' batch <- read_thermal_batch(img_obj_list)
 #'
 #' # Create a montage with 4 columns
 #' p <- plot_thermal_montage(batch, ncol = 4, padding = 20)
-#'
-#' # Save the high-res result
-#' ggsave("montage_cohort_A.png", p, width = 12, height = 10, dpi = 300)
 #' }
 plot_thermal_montage <- function(img_list, ncol = NULL, padding = 10,
                                 palette = "inferno", text_color = "black", text_size = 4) {
@@ -783,15 +798,14 @@ plot_thermal_montage <- function(img_list, ncol = NULL, padding = 10,
 #' @importFrom tools file_path_sans_ext
 #' @export
 #' @examples
-#' \dontrun{
-#' # Load data
-#' batch <- read_thermal_batch("data/mice")
+#' \donttest{
+#' # Load a batch of images
+#' img_obj_list <- system.file("extdata",package = "BioThermR")
+#' batch <- read_thermal_batch(img_obj_list)
+#' batch <- lapply(batch, roi_segment_ebimage)
 #'
 #' # Create an artistic thermal cloud
 #' p_cloud <- plot_thermal_cloud(batch, spread_factor = 1.5, jitter_factor = 2.0)
-#'
-#' # Save for cover art
-#' ggsave("thermal_cloud_cover.png", p_cloud, width = 15, height = 15, dpi = 300)
 #' }
 plot_thermal_cloud <- function(img_list, spread_factor = 1.1, jitter_factor = 0.5,
                               palette = "inferno", text_color = "black", text_size = 3,
@@ -949,18 +963,19 @@ plot_thermal_cloud <- function(img_list, spread_factor = 1.1, jitter_factor = 0.
 #' @import ggplot2
 #' @export
 #' @examples
-#' \dontrun{
-#' # 1. Automated Segmentation
-#' auto_obj <- roi_segment_ebimage(my_image)
+#' \donttest{
+#' #' # Load raw data
+#' img_obj <- system.file("extdata", "C05.raw", package = "BioThermR")
+#' img <- read_thermal_raw(img_obj)
+#' # Apply automated segmentation
+#' img1 <- roi_segment_ebimage(img, keep_largest = TRUE)
 #'
-#' # 2. Manual Segmentation
-#' manual_obj <- roi_filter_interactive(my_image)
+#' # Simple background removal: Keep everything above 24 degrees
+#' img2 <- roi_filter_threshold(img, threshold = c(33, Inf))
 #'
-#' # 3. Compare them
-#' plot_roi_overlap(img_obj1 = auto_obj,
-#'                  img_obj2 = manual_obj,
-#'                  color = "blue",
-#'                  line_color = "red")
+#' # Compare them
+#' plot_roi_overlap(img_obj1 = img1,
+#'                  img_obj2 = img2)
 #' }
 plot_roi_overlap <- function(img_obj1, img_obj2,
                              title = NULL,

@@ -30,7 +30,9 @@ This function relies on the 'Thermimage' package and the external tool 'ExifTool
          Please ensure 'ExifTool' is installed and added to your system PATH.
 }
 \examples{
-\dontrun{
-img <- read_thermal_flir("data/mouse_flir.jpg")
+\donttest{
+# Example using a flir thermal file
+img_obj <- system.file("extdata", "IR_2412.jpg", package = "Thermimage")
+img <- read_thermal_flir(img_obj)
 }
 }

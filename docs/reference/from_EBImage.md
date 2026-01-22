@@ -59,3 +59,20 @@ This function supports two modes:
 
 If the input `eb_img` has more than 2 dimensions (e.g., color/RGB), only
 the first channel is utilized, and a warning is issued.
+
+## Examples
+
+``` r
+# \donttest{
+# Load data
+mat <- matrix(runif(160*120, 20, 40), nrow = 120, ncol = 160)
+obj <- create_BioThermR(mat, name = "Simulation_01")
+#> BioThermR object 'Simulation_01' created. Dimensions: 120x160
+
+# Convert to EBImage format with normalization
+eb_obj <- as_EBImage(obj, normalize = TRUE)
+
+# Convert to BioThermR from EBImage
+new_obj <- from_EBImage(eb_obj)
+# }
+```

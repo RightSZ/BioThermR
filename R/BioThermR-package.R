@@ -15,5 +15,5 @@ NULL
 utils::globalVariables(c(
   ".data",
   "final_x", "final_y", "val", "x", "y", "label",
-  "temp", "x_shifted", "y_shifted"
+  "temp", "x_shifted", "y_shifted","auto","manual"
 ))

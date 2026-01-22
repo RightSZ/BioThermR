@@ -93,14 +93,17 @@ not overlap.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-# Basic density plot
-p <- plot_thermal_density(my_obj)
+# \donttest{
+# Load raw data
+img_obj <- system.file("extdata", "C05.raw", package = "BioThermR")
+img <- read_thermal_raw(img_obj)
 
-# Customized plot for publication
-p_custom <- plot_thermal_density(my_obj,
-                                 color = "grey80",
-                                 point_color = "blue",
-                                 show_min = FALSE) # Hide min label
-} # }
+# Apply automated segmentation
+img <- roi_segment_ebimage(img, keep_largest = TRUE)
+#> Auto-Segmentation: Kept largest object ( 401 pixels )
+
+# Density plot
+plot_thermal_density(img)
+
+# }
 ```

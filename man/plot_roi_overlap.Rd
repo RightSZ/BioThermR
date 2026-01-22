@@ -53,17 +53,18 @@ The visualization consists of three layers:
          where X and Y are the set of pixels in the two masks. A DSC of 1 indicates perfect overlap.
 }
 \examples{
-\dontrun{
-# 1. Automated Segmentation
-auto_obj <- roi_segment_ebimage(my_image)
+\donttest{
+#' # Load raw data
+img_obj <- system.file("extdata", "C05.raw", package = "BioThermR")
+img <- read_thermal_raw(img_obj)
+# Apply automated segmentation
+img1 <- roi_segment_ebimage(img, keep_largest = TRUE)
 
-# 2. Manual Segmentation
-manual_obj <- roi_filter_interactive(my_image)
+# Simple background removal: Keep everything above 24 degrees
+img2 <- roi_filter_threshold(img, threshold = c(33, Inf))
 
-# 3. Compare them
-plot_roi_overlap(img_obj1 = auto_obj,
-                 img_obj2 = manual_obj,
-                 color = "blue",
-                 line_color = "red")
+# Compare them
+plot_roi_overlap(img_obj1 = img1,
+                 img_obj2 = img2)
 }
 }

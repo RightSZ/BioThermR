@@ -45,11 +45,10 @@ The segmentation pipeline consists of four steps:
          }
 }
 \examples{
-\dontrun{
 # Load raw data
-obj <- read_thermal_flir("mouse.jpg")
+img_obj <- system.file("extdata", "C05.raw", package = "BioThermR")
+img <- read_thermal_raw(img_obj)
 
 # Apply automated segmentation
-obj <- roi_segment_ebimage(obj, keep_largest = TRUE)
-}
+img <- roi_segment_ebimage(img, keep_largest = TRUE)
 }

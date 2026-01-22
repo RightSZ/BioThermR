@@ -27,13 +27,12 @@
 #' @importFrom EBImage Image otsu makeBrush opening closing bwlabel
 #' @export
 #' @examples
-#' \dontrun{
 #' # Load raw data
-#' obj <- read_thermal_flir("mouse.jpg")
+#' img_obj <- system.file("extdata", "C05.raw", package = "BioThermR")
+#' img <- read_thermal_raw(img_obj)
 #'
 #' # Apply automated segmentation
-#' obj <- roi_segment_ebimage(obj, keep_largest = TRUE)
-#' }
+#' img <- roi_segment_ebimage(img, keep_largest = TRUE)
 roi_segment_ebimage <- function(img_obj, method = "otsu", keep_largest = TRUE, morphology = TRUE) {
 
   if (!inherits(img_obj, "BioThermR")) {
@@ -126,13 +125,12 @@ roi_segment_ebimage <- function(img_obj, method = "otsu", keep_largest = TRUE, m
 #' @return A 'BioThermR' object with the \code{processed} matrix updated.
 #' @export
 #' @examples
-#' \dontrun{
-#' # Simple background removal: Keep everything above 24 degrees
-#' obj <- roi_filter_threshold(obj, threshold = c(24, Inf))
+#' # Load raw data
+#' img_obj <- system.file("extdata", "C05.raw", package = "BioThermR")
+#' img <- read_thermal_raw(img_obj)
 #'
-#' # Specific physiological window: Keep between 30 and 39 degrees
-#' obj <- roi_filter_threshold(obj, threshold = c(30, 39))
-#' }
+#' # Simple background removal: Keep everything above 24 degrees
+#' img <- roi_filter_threshold(img, threshold = c(24, Inf))
 roi_filter_threshold <- function(img_obj, threshold, use_processed = FALSE) {
 
   # 1. Validate Input
@@ -202,18 +200,6 @@ roi_filter_threshold <- function(img_obj, threshold, use_processed = FALSE) {
 #' @import ggplot2
 #' @importFrom EBImage bwlabel
 #' @export
-#' @examples
-#' \dontrun{
-#' # 1. Load batch
-#' my_data <- read_thermal_batch("raw_images/")
-#'
-#' # 2. Launch interactive selector starting from the 10th image
-#' # The app allows you to manually refine ROIs and remove noise
-#' my_data_cleaned <- roi_filter_interactive(my_data, start_index = 10)
-#'
-#' # 3. Save the result immediately after closing the app
-#' save_biothermr(my_data_cleaned, "data_cleaned.rds")
-#' }
 roi_filter_interactive <- function(img_input, start_index = 1, use_processed = TRUE) {
 
   # --- 1. Data Normalization ---

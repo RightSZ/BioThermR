@@ -25,15 +25,13 @@ Iterates through a list of 'BioThermR' objects, extracts the pre-calculated stat
              suitable for downstream statistical analysis (ANOVA, t-test) or visualization.
 }
 \examples{
-\dontrun{
+\donttest{
 # 1. Import and Process
-batch <- read_thermal_batch("data/")
-batch <- lapply(batch, analyze_thermal_stats)
+img_obj_list <- system.file("extdata",package = "BioThermR")
+img_list <- read_thermal_batch(img_obj_list)
+img_list <- lapply(img_list, analyze_thermal_stats)
 
 # 2. Compile Results
-df_results <- compile_batch_stats(batch)
-
-# 3. View
-head(df_results)
+df_results <- compile_batch_stats(img_list)
 }
 }

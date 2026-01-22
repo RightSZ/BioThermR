@@ -48,11 +48,11 @@ using `Inf` or `-Inf`.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-# Simple background removal: Keep everything above 24 degrees
-obj <- roi_filter_threshold(obj, threshold = c(24, Inf))
+# Load raw data
+img_obj <- system.file("extdata", "C05.raw", package = "BioThermR")
+img <- read_thermal_raw(img_obj)
 
-# Specific physiological window: Keep between 30 and 39 degrees
-obj <- roi_filter_threshold(obj, threshold = c(30, 39))
-} # }
+# Simple background removal: Keep everything above 24 degrees
+img <- roi_filter_threshold(img, threshold = c(24, Inf))
+#> ROI Filter applied: Keeping range [24, Inf]
 ```

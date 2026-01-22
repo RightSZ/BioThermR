@@ -33,11 +33,3 @@ quantity of objects loaded.
 ## See also
 
 [`save_biothermr`](https://rightsz.github.io/BioThermR/reference/save_biothermr.md)
-
-## Examples
-
-``` r
-if (FALSE) { # \dontrun{
-my_mouse <- load_biothermr("data/obj.rds")
-} # }
-```

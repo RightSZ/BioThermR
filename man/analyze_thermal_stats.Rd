@@ -31,3 +31,8 @@ The function calculates the following metrics:
            \item \strong{Peak_Density:} The temperature value corresponding to the peak of the kernel density estimate (Mode).
          }
 }
+\examples{
+img_obj <- system.file("extdata", "C05.raw", package = "BioThermR")
+img <- read_thermal_raw(img_obj)
+img <- analyze_thermal_stats(img)
+}

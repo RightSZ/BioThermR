@@ -47,14 +47,12 @@ The function executes a two-pass algorithm:
          The result is rendered using \code{geom_tile(width=1, height=1)} to guarantee continuous, gap-free visualization.
 }
 \examples{
-\dontrun{
+\donttest{
 # Load a batch of images
-batch <- read_thermal_batch("data/cohort_A")
+img_obj_list <- system.file("extdata",package = "BioThermR")
+batch <- read_thermal_batch(img_obj_list)
 
 # Create a montage with 4 columns
 p <- plot_thermal_montage(batch, ncol = 4, padding = 20)
-
-# Save the high-res result
-ggsave("montage_cohort_A.png", p, width = 12, height = 10, dpi = 300)
 }
 }

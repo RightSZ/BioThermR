@@ -52,7 +52,6 @@ A list object of class "BioThermR" containing:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-img <- read_thermal_raw("data/sample.raw")
-} # }
+img_obj <- system.file("extdata", "C05.raw", package = "BioThermR")
+img <- read_thermal_raw(img_obj)
 ```

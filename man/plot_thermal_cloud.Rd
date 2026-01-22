@@ -52,14 +52,13 @@ The function performs object-centric rendering:
          The spacing and randomness of the spiral can be tuned using \code{spread_factor} and \code{jitter_factor}.
 }
 \examples{
-\dontrun{
-# Load data
-batch <- read_thermal_batch("data/mice")
+\donttest{
+# Load a batch of images
+img_obj_list <- system.file("extdata",package = "BioThermR")
+batch <- read_thermal_batch(img_obj_list)
+batch <- lapply(batch, roi_segment_ebimage)
 
 # Create an artistic thermal cloud
 p_cloud <- plot_thermal_cloud(batch, spread_factor = 1.5, jitter_factor = 2.0)
-
-# Save for cover art
-ggsave("thermal_cloud_cover.png", p_cloud, width = 15, height = 15, dpi = 300)
 }
 }

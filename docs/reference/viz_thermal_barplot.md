@@ -101,16 +101,12 @@ suitable for scientific manuscripts. Key features include:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-# Basic plot with NPG colors
-p <- viz_thermal_barplot(df_bio, y_var = "Max", x_var = "Group")
+df_bio <- data.frame(
+  Treatment = rep(c("ND", "HFD"), each = 5),
+  Mean = c(runif(5, 33, 35), runif(5, 34, 36))
+)
 
-# Customizing error bars and point style
-p_se <- viz_thermal_barplot(df_bio,
-                            y_var = "Mean",
-                            x_var = "Genotype",
-                            error_bar = "mean_se",
-                            point_size = 2.0,
-                            point_alpha = 0.8)
-} # }
+# Boxplot with individual points
+p <- viz_thermal_barplot(df_bio,y_var="Mean",x_var="Treatment",error_bar = "mean_se")
+p
 ```

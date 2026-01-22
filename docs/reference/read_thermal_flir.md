@@ -50,7 +50,9 @@ to your system PATH.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-img <- read_thermal_flir("data/mouse_flir.jpg")
-} # }
+# \donttest{
+# Example using a flir thermal file
+img_obj <- system.file("extdata", "IR_2412.jpg", package = "Thermimage")
+img <- read_thermal_flir(img_obj)
+# }
 ```

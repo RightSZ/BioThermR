@@ -19,9 +19,7 @@ Manually creates a BioThermR object from a numeric matrix or data frame.
              Useful for converting data loaded from other formats (Excel, CSV, txt) or simulation data.
 }
 \examples{
-\dontrun{
 mat <- matrix(runif(160*120, 20, 40), nrow = 120, ncol = 160)
 obj <- create_BioThermR(mat, name = "Simulation_01")
 plot_thermal_heatmap(obj)
-}
 }

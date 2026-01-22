@@ -27,7 +27,6 @@ Reads a binary .raw file (typically 32-bit floating point), converts it into a m
              and constructs a 'BioThermR' object containing raw data and metadata.
 }
 \examples{
-\dontrun{
-img <- read_thermal_raw("data/sample.raw")
-}
+img_obj <- system.file("extdata", "C05.raw", package = "BioThermR")
+img <- read_thermal_raw(img_obj)
 }

@@ -17,23 +17,26 @@ Please install it first:
 ``` r
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
-
 BiocManager::install("EBImage")
+```
+
+Install the stable release from
+[CRAN](https://CRAN.R-project.org/package=BioThermR) as follow:
+
+``` r
+# Install from CRAN
+install.packages("BioThermR")
 ```
 
 Install the latest development version from
 [GitHub](https://github.com/RightSZ/BioThermR) as follow:
 
 ``` r
+# Install the development version from GitHub
 if (!require("devtools", quietly = TRUE))
     install.packages("devtools")
 devtools::install_github("RightSZ/BioThermR")
 ```
-
-CRAN availability
-
-Submission to CRAN is currently in progress. The package will be
-available on CRAN upon acceptance.
 
 ## License
 

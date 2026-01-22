@@ -20,6 +20,10 @@
 #' @return A 'BioThermR' object with the \code{stats} slot updated containing a data frame of results.
 #' @importFrom stats sd median quantile density IQR
 #' @export
+#' @examples
+#' img_obj <- system.file("extdata", "C05.raw", package = "BioThermR")
+#' img <- read_thermal_raw(img_obj)
+#' img <- analyze_thermal_stats(img)
 analyze_thermal_stats <- function(img_obj, use_processed = TRUE) {
 
   if (!inherits(img_obj, "BioThermR")) {
@@ -85,16 +89,14 @@ analyze_thermal_stats <- function(img_obj, use_processed = TRUE) {
 #'         }
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # 1. Import and Process
-#' batch <- read_thermal_batch("data/")
-#' batch <- lapply(batch, analyze_thermal_stats)
+#' img_obj_list <- system.file("extdata",package = "BioThermR")
+#' img_list <- read_thermal_batch(img_obj_list)
+#' img_list <- lapply(img_list, analyze_thermal_stats)
 #'
 #' # 2. Compile Results
-#' df_results <- compile_batch_stats(batch)
-#'
-#' # 3. View
-#' head(df_results)
+#' df_results <- compile_batch_stats(img_list)
 #' }
 compile_batch_stats <- function(img_list) {
 
@@ -257,14 +259,21 @@ merge_clinical_data <- function(thermal_df, clinical_df,
 #'         ID and metadata first, followed by the aggregated thermal statistics and the \code{n_replicates} count.
 #' @export
 #' @examples
-#' \dontrun{
+#' # Create a toy dataset with repeated measurements
+#' df_raw <- data.frame(
+#'   SampleID = rep(paste0("M", 1:3), each = 3),
+#'   Group = rep(c("ND", "HFD", "ND"), each = 3),
+#'   Sex = rep("M", 9),
+#'   Median = runif(9, 33, 36),
+#'   IQR = runif(9, 0.5, 1.5)
+#' )
+#'
 #' df <- aggregate_replicates(
 #'   data = df_raw,
 #'   id_col = "SampleID",
 #'   method = "median",
 #'   keep_cols = c("Group", "Sex")
 #' )
-#' }
 aggregate_replicates <- function(data, id_col, method = "mean", keep_cols = NULL) {
 
   # 1. Validation

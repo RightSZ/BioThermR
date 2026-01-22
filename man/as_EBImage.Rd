@@ -29,14 +29,15 @@ Extracts the thermal matrix (raw or processed) from a 'BioThermR' object and
              labeling) provided by the 'EBImage' package.
 }
 \examples{
-\dontrun{
+\donttest{
 # Load data
-my_obj <- read_thermal_flir("data/mouse.jpg")
+mat <- matrix(runif(160*120, 20, 40), nrow = 120, ncol = 160)
+obj <- create_BioThermR(mat, name = "Simulation_01")
 
 # Convert to EBImage format with normalization (for thresholding)
-eb_norm <- as_EBImage(my_obj, normalize = TRUE)
+eb_norm <- as_EBImage(obj, normalize = TRUE)
 
 # Convert preserving temperature values (for calculation)
-eb_temp <- as_EBImage(my_obj, normalize = FALSE)
+eb_temp <- as_EBImage(obj, normalize = FALSE)
 }
 }

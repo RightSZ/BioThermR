@@ -34,3 +34,13 @@ Combines multiple BioThermR objects into a single plot (a montage/collage).
              Images are laid out in a grid, and filenames are labeled above each image.
              Uses the 'processed' matrix (NA values are transparent).
 }
+\examples{
+\donttest{
+# Load a batch of images
+img_obj_list <- system.file("extdata",package = "BioThermR")
+batch <- read_thermal_batch(img_obj_list)
+
+# Create a montage2 with 4 columns
+p <- viz_thermal_montage2(batch, ncol = 4, padding = 20)
+}
+}

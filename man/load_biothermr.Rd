@@ -23,11 +23,6 @@ Upon loading, the function performs an automatic validation check to ensure the
          file contains a valid 'BioThermR' class instance (or a list of them).
          It provides feedback to the console regarding the type and quantity of objects loaded.
 }
-\examples{
-\dontrun{
-my_mouse <- load_biothermr("data/obj.rds")
-}
-}
 \seealso{
 \code{\link{save_biothermr}}
 }

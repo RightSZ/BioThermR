@@ -29,9 +29,8 @@ A 'BioThermR' object.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
 mat <- matrix(runif(160*120, 20, 40), nrow = 120, ncol = 160)
 obj <- create_BioThermR(mat, name = "Simulation_01")
+#> BioThermR object 'Simulation_01' created. Dimensions: 120x160
 plot_thermal_heatmap(obj)
-} # }
 ```

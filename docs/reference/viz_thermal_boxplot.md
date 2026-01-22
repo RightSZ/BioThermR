@@ -88,8 +88,12 @@ reporting:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-# Standard boxplot with individual points
+df_bio <- data.frame(
+  Treatment = rep(c("ND", "HFD"), each = 5),
+  Mean = c(runif(5, 33, 35), runif(5, 34, 36))
+)
+
+# Boxplot with individual points
 p <- viz_thermal_boxplot(df_bio, y_var = "Mean", x_var = "Treatment")
-} # }
+p
 ```

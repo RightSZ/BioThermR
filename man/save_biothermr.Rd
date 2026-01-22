@@ -22,8 +22,13 @@ Serializes and saves a single 'BioThermR' object or a list of objects to a compr
              masks, metadata, and calculation stats—are preserved accurately.
 }
 \examples{
-\dontrun{
-# Save a single processed object
-save_biothermr(mouse_obj, "data/processed/mouse_01.rds")
+\donttest{
+# Load data
+mat <- matrix(runif(160*120, 20, 40), nrow = 120, ncol = 160)
+obj <- create_BioThermR(mat, name = "Simulation_01")
+
+# Save a single object to a temporary directory
+out_file <- file.path(tempdir(), "mouse_01.rds")
+save_biothermr(obj, out_file)
 }
 }

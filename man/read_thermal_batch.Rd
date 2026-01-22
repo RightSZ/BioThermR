@@ -21,3 +21,10 @@ A named list of "BioThermR" objects.
 \description{
 Scans a folder and imports all matching .raw files into a list.
 }
+\examples{
+\donttest{
+# Example using raw thermal files
+img_obj_list <- system.file("extdata",package = "BioThermR")
+img_list <- read_thermal_batch(img_obj_list)
+}
+}

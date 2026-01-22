@@ -29,3 +29,15 @@ read_thermal_batch(folder_path, pattern = "\\.raw$", recursive = FALSE, ...)
 ## Value
 
 A named list of "BioThermR" objects.
+
+## Examples
+
+``` r
+# \donttest{
+# Example using raw thermal files
+img_obj_list <- system.file("extdata",package = "BioThermR")
+img_list <- read_thermal_batch(img_obj_list)
+#> Reading 30 files...
+#> Batch read completed. Imported 30 files.
+# }
+```

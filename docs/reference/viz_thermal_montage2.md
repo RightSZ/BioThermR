@@ -49,3 +49,19 @@ viz_thermal_montage2(
 ## Value
 
 A ggplot object.
+
+## Examples
+
+``` r
+# \donttest{
+# Load a batch of images
+img_obj_list <- system.file("extdata",package = "BioThermR")
+batch <- read_thermal_batch(img_obj_list)
+#> Reading 30 files...
+#> Batch read completed. Imported 30 files.
+
+# Create a montage2 with 4 columns
+p <- viz_thermal_montage2(batch, ncol = 4, padding = 20)
+#> Creating montage layout: 8 rows x 4 columns
+# }
+```
