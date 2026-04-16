@@ -34,7 +34,7 @@ devtools::install_github("RightSZ/BioThermR")
 
 First, ensure all dependencies are installed.
 
-```{r install_dependencies}
+```{r install_dependencies,eval=FALSE}
 # Install dependencies
 if (!require("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
@@ -171,5 +171,41 @@ s4 <- viz_thermal_boxplot(data = df_new,
                              label = "p.signif",
                              hide.ns = FALSE
   )
-ggarrange(s1,s2,s3,s4,ncol = 4,labels = c("A","B","C","D"))
+```
+
+
+## 6. Correlation Analysis
+Here, we further demonstrate how BioThermR can be used for downstream
+integrative analysis by correlating thermography-derived features with
+external phenotypic variables.
+```{r correlation analysis}
+# In this example, selected thermal metrics are tested against body weight and blood glucose using Spearman correlation. The results are visualized as a correlation heatmap and a representative scatter plot.
+res <- correlate_thermal_traits(
+  df_new,
+  thermal_vars =  c("Max","Min","Mean","Median","IQR","Peak_Density"),
+  external_vars = c("Weight","Glucose"),
+  method = "spearman")
+
+# Correlation heatmap summarizing the associations between thermal metrics and external traits.
+s5 <- viz_cor_heatmap(res)
+
+# Representative scatter plot illustrating the relationship between one selected thermal feature (IQR) and an external trait (Weight).
+s6 <- viz_cor_scatter(df_new,
+                x_col = "IQR",
+                x_label = "Thermal Metric: IQR",
+                y_col = "Weight"
+                )
+```
+
+## 7. Figure Assembly
+Combine statistical comparison plots and correlation analysis outputs.
+```{r Figure Assembly}
+ggarrange(
+  s1, s2, s3,
+  s4, s5, s6,
+  ncol = 3, nrow = 2,
+  labels = c("A", "B", "C", "D", "E", "F"),
+  widths = c(1, 1, 1),
+  heights = c(1, 1.1)
+)
 ```

@@ -25,6 +25,7 @@ RoxygenNote: 7.3.3
 Imports: 
     EBImage,
     ggplot2,
+    ggpubr,
     ggrepel,
     ggsci,
     plotly,
@@ -34,5 +35,7 @@ Imports:
 Suggests: 
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    psych,
+    lme4
 VignetteBuilder: knitr

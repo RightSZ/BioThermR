@@ -10,7 +10,9 @@
 <url><loc>https://rightsz.github.io/BioThermR/reference/aggregate_replicates.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/reference/analyze_thermal_stats.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/reference/as_EBImage.html</loc></url>
+<url><loc>https://rightsz.github.io/BioThermR/reference/assess_replicates.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/reference/compile_batch_stats.html</loc></url>
+<url><loc>https://rightsz.github.io/BioThermR/reference/correlate_thermal_traits.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/reference/create_BioThermR.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/reference/from_EBImage.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/reference/index.html</loc></url>
@@ -29,6 +31,8 @@
 <url><loc>https://rightsz.github.io/BioThermR/reference/roi_filter_threshold.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/reference/roi_segment_ebimage.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/reference/save_biothermr.html</loc></url>
+<url><loc>https://rightsz.github.io/BioThermR/reference/viz_cor_heatmap.html</loc></url>
+<url><loc>https://rightsz.github.io/BioThermR/reference/viz_cor_scatter.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/reference/viz_thermal_barplot.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/reference/viz_thermal_boxplot.html</loc></url>
 <url><loc>https://rightsz.github.io/BioThermR/reference/viz_thermal_montage2.html</loc></url>

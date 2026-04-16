@@ -135,20 +135,27 @@ df_new <- aggregate_replicates(df,
                                keep_cols = c("Group")
                                )
 head(df_new)
-#>   Sample Group n_replicates      Min      Max     Mean   Median       SD
-#> 1   ND_1    ND            3 29.36788 35.87173 31.70707 31.55465 1.311257
-#> 2   ND_2    ND            3 29.19874 35.92883 32.68671 31.84397 1.970498
-#> 3   ND_3    ND            3 28.18887 36.03918 31.75590 31.25142 1.650999
-#> 4   ND_4    ND            3 30.37368 35.99798 33.32450 32.42096 1.981652
-#> 5   ND_5    ND            3 30.59082 35.99695 33.13636 32.18157 1.982310
-#> 6  ND4_1   ND4            3 29.27191 35.91896 32.84147 32.21257 1.994384
-#>        Q25      Q75       IQR         CV Peak_Density Rep
-#> 1 31.07301 31.86817 0.7951624 0.04135084     31.62128   2
-#> 2 31.29252 34.58603 3.2935144 0.06027172     31.48556   2
-#> 3 30.87554 31.98214 1.1066006 0.05197942     31.09829   2
-#> 4 31.73361 35.63418 3.9005693 0.05946340     33.24354   2
-#> 5 31.48953 35.62859 4.1390597 0.05982208     31.63697   2
-#> 6 31.38211 35.57433 4.1922170 0.06072339     32.02256   2
+#>   Sample Group n_replicates   Pixels      Min      Max     Mean   Median
+#> 1   ND_1    ND            3 402.6667 29.36788 35.87173 31.70707 31.55465
+#> 2   ND_2    ND            3 341.6667 29.19874 35.92883 32.68671 31.84397
+#> 3   ND_3    ND            3 418.0000 28.18887 36.03918 31.75590 31.25142
+#> 4   ND_4    ND            3 325.0000 30.37368 35.99798 33.32450 32.42096
+#> 5   ND_5    ND            3 407.0000 30.59082 35.99695 33.13636 32.18157
+#> 6  ND4_1   ND4            3 355.3333 29.27191 35.91896 32.84147 32.21257
+#>         SD      Q25      Q75       IQR         CV Peak_Density Weight Glucose
+#> 1 1.311257 31.07301 31.86817 0.7951624 0.04135084     31.62128   22.1    5.69
+#> 2 1.970498 31.29252 34.58603 3.2935144 0.06027172     31.48556   21.4    8.19
+#> 3 1.650999 30.87554 31.98214 1.1066006 0.05197942     31.09829   23.3    4.70
+#> 4 1.981652 31.73361 35.63418 3.9005693 0.05946340     33.24354   20.3    6.46
+#> 5 1.982310 31.48953 35.62859 4.1390597 0.05982208     31.63697   24.9    4.49
+#> 6 1.994384 31.38211 35.57433 4.1922170 0.06072339     32.02256   30.0    3.13
+#>   Rep
+#> 1   2
+#> 2   2
+#> 3   2
+#> 4   2
+#> 5   2
+#> 6   2
 ```
 
 ### 5. Statistical Comparison
@@ -196,7 +203,46 @@ s4 <- viz_thermal_boxplot(data = df_new,
                              label = "p.signif",
                              hide.ns = FALSE
   )
-ggarrange(s1,s2,s3,s4,ncol = 4,labels = c("A","B","C","D"))
 ```
 
-![](BioThermR_case_study_files/figure-html/comparison-1.png)
+### 6. Correlation Analysis
+
+Here, we further demonstrate how BioThermR can be used for downstream
+integrative analysis by correlating thermography-derived features with
+external phenotypic variables.
+
+``` r
+# In this example, selected thermal metrics are tested against body weight and blood glucose using Spearman correlation. The results are visualized as a correlation heatmap and a representative scatter plot.
+res <- correlate_thermal_traits(
+  df_new,
+  thermal_vars =  c("Max","Min","Mean","Median","IQR","Peak_Density"),
+  external_vars = c("Weight","Glucose"),
+  method = "spearman")
+
+# Correlation heatmap summarizing the associations between thermal metrics and external traits.
+s5 <- viz_cor_heatmap(res)
+
+# Representative scatter plot illustrating the relationship between one selected thermal feature (IQR) and an external trait (Weight).
+s6 <- viz_cor_scatter(df_new,
+                x_col = "IQR",
+                x_label = "Thermal Metric: IQR",
+                y_col = "Weight"
+                )
+```
+
+### 7. Figure Assembly
+
+Combine statistical comparison plots and correlation analysis outputs.
+
+``` r
+ggarrange(
+  s1, s2, s3,
+  s4, s5, s6,
+  ncol = 3, nrow = 2,
+  labels = c("A", "B", "C", "D", "E", "F"),
+  widths = c(1, 1, 1),
+  heights = c(1, 1.1)
+)
+```
+
+![](BioThermR_case_study_files/figure-html/Figure%20Assembly-1.png)

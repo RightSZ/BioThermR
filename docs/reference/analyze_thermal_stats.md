@@ -1,9 +1,9 @@
 # Calculate Comprehensive Thermal Statistics
 
 Computes a detailed set of summary statistics from the thermal matrix.
-Metrics include central tendency (Mean, Median, Peak Density),
-dispersion (SD, IQR, CV), and range (Min, Max, Quantiles). NA values
-(background) are automatically excluded.
+Metrics include ROI size (Pixels), central tendency (Mean, Median, Peak
+Density), dispersion (SD, IQR, CV), and range (Min, Max, Quantiles). NA
+values (background) are automatically excluded.
 
 ## Usage
 
@@ -32,11 +32,16 @@ frame of results.
 
 The function calculates the following metrics:
 
+- **Pixels:** Number of valid non-NA pixels included in the analysis.
+
 - **Min/Max:** Extremities of the temperature distribution.
 
 - **Mean/Median:** Measures of central tendency.
 
 - **SD (Standard Deviation):** Absolute measure of spread.
+
+- **Q25/Q75:** The 25th and 75th percentiles of the temperature
+  distribution.
 
 - **IQR (Interquartile Range):** Robust measure of spread (Q75 - Q25).
 
@@ -44,7 +49,7 @@ The function calculates the following metrics:
   Mean), useful for assessing thermal heterogeneity.
 
 - **Peak_Density:** The temperature value corresponding to the peak of
-  the kernel density estimate (Mode).
+  the kernel density estimate.
 
 ## Examples
 

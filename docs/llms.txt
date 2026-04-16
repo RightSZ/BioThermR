@@ -53,8 +53,12 @@ for details.
   : Calculate Comprehensive Thermal Statistics
 - [`as_EBImage()`](https://rightsz.github.io/BioThermR/reference/as_EBImage.md)
   : Convert BioThermR Object to EBImage Object
+- [`assess_replicates()`](https://rightsz.github.io/BioThermR/reference/assess_replicates.md)
+  : Assess replicate consistency and repeatability
 - [`compile_batch_stats()`](https://rightsz.github.io/BioThermR/reference/compile_batch_stats.md)
   : Compile Batch Statistics into a Tidy Data Frame
+- [`correlate_thermal_traits()`](https://rightsz.github.io/BioThermR/reference/correlate_thermal_traits.md)
+  : Pairwise Correlation Analysis for Thermal and External Traits
 - [`create_BioThermR()`](https://rightsz.github.io/BioThermR/reference/create_BioThermR.md)
   : Create BioThermR Object from Data
 - [`from_EBImage()`](https://rightsz.github.io/BioThermR/reference/from_EBImage.md)
@@ -89,6 +93,10 @@ for details.
   : Automated ROI Segmentation via EBImage
 - [`save_biothermr()`](https://rightsz.github.io/BioThermR/reference/save_biothermr.md)
   : Save BioThermR Data Objects to Disk
+- [`viz_cor_heatmap()`](https://rightsz.github.io/BioThermR/reference/viz_cor_heatmap.md)
+  : Visualize Thermal Correlation Heatmap
+- [`viz_cor_scatter()`](https://rightsz.github.io/BioThermR/reference/viz_cor_scatter.md)
+  : Visualize Correlation Scatter Plot
 - [`viz_thermal_barplot()`](https://rightsz.github.io/BioThermR/reference/viz_thermal_barplot.md)
   : Generate Publication-Ready Comparative Barplots
 - [`viz_thermal_boxplot()`](https://rightsz.github.io/BioThermR/reference/viz_thermal_boxplot.md)

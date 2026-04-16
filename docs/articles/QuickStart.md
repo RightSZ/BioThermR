@@ -79,17 +79,18 @@ obj <- analyze_thermal_stats(obj)
 
 # Show the results
 print(obj$stats)
-#>          Metric       Value
-#> 1           Min 29.10121918
-#> 2           Max 35.88959503
-#> 3          Mean 31.59486416
-#> 4        Median 31.46377563
-#> 5            SD  1.28356576
-#> 6           Q25 31.00030899
-#> 7           Q75 31.72277069
-#> 8           IQR  0.72246170
-#> 9            CV  0.04062577
-#> 10 Peak_Density 31.52773844
+#>          Metric        Value
+#> 1        Pixels 401.00000000
+#> 2           Min  29.10121918
+#> 3           Max  35.88959503
+#> 4          Mean  31.59486416
+#> 5        Median  31.46377563
+#> 6            SD   1.28356576
+#> 7           Q25  31.00030899
+#> 8           Q75  31.72277069
+#> 9           IQR   0.72246170
+#> 10           CV   0.04062577
+#> 11 Peak_Density  31.52773844
 ```
 
 ## 5. Batch Processing & Montage
@@ -103,7 +104,7 @@ and visualize all of them in a few lines of code.
 data_folder <- system.file("extdata", package = "BioThermR")
 
 print(paste("Reading batch from:", data_folder))
-#> [1] "Reading batch from: /private/var/folders/_b/gx4lc14d5ssf7pl9qlkl32r80000gn/T/RtmpXoSmHE/temp_libpath67d827c71143/BioThermR/extdata"
+#> [1] "Reading batch from: /private/var/folders/_b/gx4lc14d5ssf7pl9qlkl32r80000gn/T/RtmpxorPhn/temp_libpath1a9560721b10/BioThermR/extdata"
 
 # 2. Read the entire batch
 # Note: We use pattern = ".raw" to ensure we only load the raw thermal files
@@ -187,18 +188,18 @@ df_results <- compile_batch_stats(batch_list_stats)
 
 # 3. View the first few rows
 head(df_results)
-#>   Filename      Min      Max     Mean   Median       SD      Q25      Q75
-#> 1  C05.raw 29.10122 35.88960 31.59486 31.46378 1.283566 31.00031 31.72277
-#> 2  C06.raw 29.58407 35.84299 31.68077 31.51830 1.262623 31.08210 31.87953
-#> 3  C07.raw 29.41834 35.88261 31.84558 31.68188 1.387581 31.13662 32.00221
-#> 4  C08.raw 28.86848 35.89514 32.67292 31.73745 2.031803 31.21300 35.56901
-#> 5  C09.raw 29.84530 36.06936 32.94407 31.96381 2.038136 31.40044 35.59897
-#> 6  C10.raw 28.88244 35.82200 32.44315 31.83065 1.841554 31.26412 32.59012
-#>         IQR         CV Peak_Density
-#> 1 0.7224617 0.04062577     31.52774
-#> 2 0.7974343 0.03985456     31.55971
-#> 3 0.8655910 0.04357217     31.77638
-#> 4 4.3560166 0.06218614     31.43158
-#> 5 4.1985264 0.06186655     31.59204
-#> 6 1.3260002 0.05676249     31.43307
+#>   Filename Pixels      Min      Max     Mean   Median       SD      Q25
+#> 1  C05.raw    401 29.10122 35.88960 31.59486 31.46378 1.283566 31.00031
+#> 2  C06.raw    388 29.58407 35.84299 31.68077 31.51830 1.262623 31.08210
+#> 3  C07.raw    419 29.41834 35.88261 31.84558 31.68188 1.387581 31.13662
+#> 4  C08.raw    342 28.86848 35.89514 32.67292 31.73745 2.031803 31.21300
+#> 5  C09.raw    356 29.84530 36.06936 32.94407 31.96381 2.038136 31.40044
+#> 6  C10.raw    327 28.88244 35.82200 32.44315 31.83065 1.841554 31.26412
+#>        Q75       IQR         CV Peak_Density
+#> 1 31.72277 0.7224617 0.04062577     31.52774
+#> 2 31.87953 0.7974343 0.03985456     31.55971
+#> 3 32.00221 0.8655910 0.04357217     31.77638
+#> 4 35.56901 4.3560166 0.06218614     31.43158
+#> 5 35.59897 4.1985264 0.06186655     31.59204
+#> 6 32.59012 1.3260002 0.05676249     31.43307
 ```
