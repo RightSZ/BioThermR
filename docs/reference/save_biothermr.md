@@ -40,6 +40,6 @@ obj <- create_BioThermR(mat, name = "Simulation_01")
 # Save a single object to a temporary directory
 out_file <- file.path(tempdir(), "mouse_01.rds")
 save_biothermr(obj, out_file)
-#> Successfully saved BioThermR data to: /var/folders/_b/gx4lc14d5ssf7pl9qlkl32r80000gn/T//RtmpQnj37P/mouse_01.rds
+#> Successfully saved BioThermR data to: /var/folders/_b/gx4lc14d5ssf7pl9qlkl32r80000gn/T//RtmpaNd2po/mouse_01.rds
 # }
 ```

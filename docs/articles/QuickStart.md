@@ -104,7 +104,7 @@ and visualize all of them in a few lines of code.
 data_folder <- system.file("extdata", package = "BioThermR")
 
 print(paste("Reading batch from:", data_folder))
-#> [1] "Reading batch from: /private/var/folders/_b/gx4lc14d5ssf7pl9qlkl32r80000gn/T/RtmpxorPhn/temp_libpath1a9560721b10/BioThermR/extdata"
+#> [1] "Reading batch from: /private/var/folders/_b/gx4lc14d5ssf7pl9qlkl32r80000gn/T/RtmpQZeTwk/temp_libpath1549a3591e78e/BioThermR/extdata"
 
 # 2. Read the entire batch
 # Note: We use pattern = ".raw" to ensure we only load the raw thermal files

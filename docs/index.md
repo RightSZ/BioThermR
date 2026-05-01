@@ -1,4 +1,10 @@
-## BioThermR: an R package for standardized processing, visualization, and statistical analysis of thermal imaging data in animal studies
+## BioThermR ![BioThermR logo](reference/figures/logo.png)
+
+### an R package for standardized processing, visualization, and statistical analysis of thermal imaging data in animal studies
+
+[![CRAN](https://www.r-pkg.org/badges/version/BioThermR)](https://cran.r-project.org/web/packages/BioThermR/index.html)
+[![CRAN](https://cranlogs.r-pkg.org/badges/grand-total/BioThermR)](https://cran.r-project.org/web/packages/BioThermR/index.html)
+![](https://img.shields.io/badge/Release-0.1.1-orange.svg)![](https://img.shields.io/badge/Test-0.1.1-red.svg)
 
 `BioThermR` is an R package designed to provide an end-to-end analysis
 pipeline for infrared thermography (IRT) data in animal experimentation.
